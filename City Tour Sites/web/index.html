@@ -1,0 +1,48 @@
+<!DOCTYPE html> 
+<!-- Hwk6: US Presidents --> 
+<html>    
+    <head>   
+        <!-- downloading jQuery from Google's CDN -->    
+        <script 
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+        </script>            
+        <script type="text/javascript">
+            function runjQuery1() {
+                //go to server, read csv, populate <select>          
+                $.ajax(
+                        {url: "populateselect.jsp",
+                            dataType: "text",
+                            success: function (serverdata)
+                            {
+                                $("#showcity").html(serverdata);
+                            }
+                        })
+            }//end of runjQuery1()      
+
+            function runjQuery2() {
+                //reading the selected president    
+                var selectedCity = document.getElementById("cityList").value;
+                //ensuring the value of the selection is not blank            
+                if (selectedCity != "") {
+                    $.ajax({
+                        url: "showselect.jsp",
+                        data: "nameKey=" + selectedCity,
+                        dataType: "text",
+                        success: function (serverdata) {
+                            $("#showCity").html(serverdata);
+                        }
+                    })
+                } else {
+                    alert("Please select a City");
+                    return false;
+                }
+            }
+        </script>      
+    </head>  
+    <body onload="runjQuery1()">     
+        <h2>Jonathan Diaz - City Tour Sites</h2>     
+        City: <span id="showcity"></span>
+        <p></p>        
+        <p id="showCity"></p>
+    </body>
+</html>
