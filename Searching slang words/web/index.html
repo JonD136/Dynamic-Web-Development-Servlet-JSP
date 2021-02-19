@@ -1,0 +1,36 @@
+<!DOCTYPE html> 
+<html>    
+    <head>        
+        <title>Hwk10: Slang Words</title>            
+        
+        <!-- downloading jQuery from Google's CDN -->    
+        
+        <script 
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+        </script>      
+        
+        <script type="text/javascript">         
+            function runjQuery() {              
+                //reading team's name             
+                   var teamName = document.getElementById("nameTxtBx").value.trim();                                  
+                   $.ajax(      {      
+                       //communicating with server's and passing the name               
+                              url:  "search.jsp",                     
+                              data: "nameKey="+teamName,                   
+                              dataType: "text",                     
+                              success:  function(serverdata)       {       
+                                  $("#show").html(serverdata);                     
+                              }               
+                          })          
+                      }       
+                                         
+        </script>   
+    </head>    
+    <body>     
+        <h2>Jonathan Diaz - Slang Words</h2>       
+        Search a slang: <input type="text" id="nameTxtBx" onchange="runjQuery()"/>   
+        <br> 
+        <br> 
+        <p id="show"></p> 
+    </body> 
+</html>

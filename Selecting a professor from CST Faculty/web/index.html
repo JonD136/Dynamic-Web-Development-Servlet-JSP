@@ -1,0 +1,67 @@
+<!DOCTYPE html> 
+
+<!-- Homework 5: Displaying courses taught by CST faculty using Ajax and jQuery --> 
+
+<html>    
+    <head>        
+        <!-- downloading jQuery from Google's CDN -->     
+        <script            
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+        </script>              
+        <script type="text/javascript">
+
+            var agent;
+
+            if (window.XMLHttpRequest)
+                agent = new XMLHttpRequest();
+            else
+                agent = new ActiveXObject("Microsoft.XMLHTTP");
+
+            function runselect() {
+
+                agent.open("GET", "populateselect.jsp", true);
+                agent.send(null);
+
+                agent.onreadystatechange = function () {
+
+                    if (agent.readyState == 4 && agent.status == 200) {
+
+                        document.getElementById("showselect").innerHTML = agent.responseText;
+
+                    }
+
+                }
+            }
+
+            function showprofinfo() {
+
+                //reading the select professor's name           
+                var profName = document.getElementById("profList").value;
+                
+                if (profName != "") {
+
+                    $.ajax({
+                        url: "getcourses.jsp",
+                        data: "nameKey=" + profName,
+                        dataType: "text",
+                        success: function (serverdata) {
+                            $("#showcourses").html(serverdata);
+                        }
+                    })
+                } else
+                    alert("Please select a name");
+            }
+        </script>  
+    </head>    
+    <body onload="runselect()">   
+        
+        <h2>Jonathan Diaz - CST Faculty Spring 2019</h2>   
+
+        Select a Professor: 
+        
+        <p id="showselect"></p>       
+        <p></p>        
+        <div id='showcourses'></div>   
+        
+    </body> 
+</html>

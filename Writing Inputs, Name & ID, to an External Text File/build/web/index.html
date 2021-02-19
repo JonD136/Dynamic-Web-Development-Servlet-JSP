@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>    
+ <head>       
+   <script type="text/javascript">         
+       
+    //using Ajax to communicate with the server, let's create the communication agent       
+         if (window.XMLHttpRequest) 
+             var serverAgent = new XMLHttpRequest();    
+        
+         else var serverAgent = new ActiveXObject("Microsoft.XMLHTTP");              
+         
+    function add() {
+        
+        //booleans for validation    
+             
+             var lnameOK = false, fnameOK = false, idOK = false, allOK = false;     
+             
+             //reading inputs              
+               var inputLName = document.getElementById("lnameTxtBx").value;       
+               var inputFName = document.getElementById("fnameTxtBx").value;            
+               var inputID = document.getElementById("idTxtBx").value;   
+               
+               //let's create a variable for the regular expression
+               var acceptRegex = /^[a-zA-z'-]+$/;                  
+               
+               //validating inputs               
+                if (acceptRegex.test(inputLName)) lnameOK = true;
+                if (acceptRegex.test(inputFName)) fnameOK = true;          
+                if (inputID !== "" && !isNaN(inputID) && inputID.length == 6) idOK = true;      
+                allOK = (lnameOK) & (fnameOK) & (idOK);  
+                
+                if (allOK == true) //valid inputs 
+                     {            
+                        var uname = inputLName + "," + inputFName; 
+                        
+                        //Openning communication with the server and passing name and ID     
+                        serverAgent.open("GET","writofile.jsp?nameKey=" + uname + "&idKey=" + inputID,true);     
+                        serverAgent.send(null);              
+                        
+                        //ensuring positive communication                    
+                        serverAgent.onreadystatechange=function()                   
+                        {                        
+                            if(serverAgent.readyState==4 && serverAgent.status==200) {                           
+                                
+                                //cleaning up the inputs         
+                                 document.getElementById("lnameTxtBx").value="";      
+                                 document.getElementById("fnameTxtBx").value="";     
+                                 document.getElementById("idTxtBx").value="";
+                                 
+                            //getting response from server               
+                             var serverData=serverAgent.responseText;                         
+                             document.getElementById("show").innerHTML=serverData;                  
+                         }                  
+                     }     
+                     
+                 }else{      
+                     
+                     if (lnameOK==false) alert("invalid last name");    
+                     if (fnameOK==false) alert("invalid first name");                
+                     if (idOK==false) alert("invalid ID");             
+                 }           
+             }//end of add()  
+                  
+    
+    function show()    {                
+         
+        //Openning communication with the server's program and passing to it (name, ID)    
+               serverAgent.open("GET","showfilecontents.jsp",true);          
+                 serverAgent.send(null);     
+                                                   
+        //ensuring positive communication               
+            serverAgent.onreadystatechange=function()  {                  
+             
+                if(serverAgent.readyState==4 && serverAgent.status==200) {                       
+                  
+                        //getting response from server           
+                        var serverData=serverAgent.responseText;
+                                                            
+                        document.getElementById("show").innerHTML=serverData;                
+                    }               
+                }          
+            }       
+    </script>   
+    </head>   
+    <body>       
+        <h2>Jonathan Diaz - Homework 3: Writing Inputs (name,ID) to an External Text File</h2>       
+        
+        Last Name: <input type="text" 
+                          required id="lnameTxtBx" 
+                          autofocus pattern="[a-zA-Z]*"
+                          />     
+        &nbsp;&nbsp;       
+        
+        First Name: <input type="text" 
+                           required id="fnameTxtBx" 
+                           autofocus pattern="[a-zA-Z]*"
+                           /> 
+        <br/><br/>  
+        
+        ID (6 Digit Number Only): <input type="number" 
+                                     id="idTxtBx" 
+                                     pattern="[0-9]{6}" 
+                                     min="100000"  
+                                     max="999999" 
+                                     required placeholder="Enter ID"
+                                     />
+        <p></p>     
+        <button onclick="add()">Add</button>
+        &nbsp;&nbsp; 
+        
+        <button onclick="show()">Show Entries</button> 
+        <p></p>        
+        <div id="show"></div>    
+    </body> 
+</html>

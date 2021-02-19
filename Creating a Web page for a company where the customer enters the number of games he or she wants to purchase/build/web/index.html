@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <script type="text/javascript">
+
+
+            function show() {
+
+                //date
+                var day;
+                var date;
+                var date2;
+
+                //price & discounts
+                var dis1 = .15;
+                var dis2 = .20;
+                var dis3 = .25;
+                var disDate = .03;
+                var gamePrice = 30;
+
+                //getting inputs
+                var inputGame = document.getElementById("gameTxtBx").value;
+                var inputDate = document.getElementById("date").value;
+
+
+                //Using switch statement for holiday list
+                switch (inputDate) {
+                    case "2019-01-01":
+                    case "2020-01-01":
+                        date = "2019-01-01";
+                        date2 = "2020-01-01";
+                        day = "New Year's Day";
+                        break;
+                    case "2019-01-21":
+                    case "2020-01-20":
+                        date = "2019-01-21";
+                        date2 = "2020-01-20";
+                        day = "Dr. Martin Luther King, Jr. Day";
+                        break;
+                    case "2019-02-12":
+                    case "2020-02-12":
+                        date = "2019-02-12";
+                        date2 = "2020-02-12";
+                        day = "Lincoln's Birthday";
+                        break;
+                    case "2019-02-18":
+                    case "2020-02-17":
+                        date = "2019-02-18";
+                        date2 = "2020-02-17";
+                        day = "Washington's Birthday";
+                        break;
+                    case "2019-05-27":
+                    case "2020-05-25":
+                        date = "2019-05-27";
+                        date2 = "2020-05-25";
+                        day = "Memorial Day";
+                        break;
+                    case "2019-07-04":
+                    case "2020-07-04":
+                        date = "2019-07-04";
+                        date2 = "2020-07-04";
+                        day = "Independence Day";
+                        break;
+                    case "2019-09-02":
+                    case "2020-09-07":
+                        date = "2019-09-02";
+                        date2 = "2020-09-07";
+                        day = "Labor Day";
+                        break;
+                    case "2019-10-14":
+                    case "2020-10-12":
+                        date = "2019-10-14";
+                        date2 = "2020-10-12";
+                        day = "Columbus Day";
+                        break;
+                    case "2019-10-05":
+                    case "2020-10-03":
+                        date = "2019-10-05";
+                        date2 = "2020-10-03";
+                        day = "Election Day";
+                        break;
+                    case "2019-10-11":
+                    case "2020-10-11":
+                        date = "2019-10-11";
+                        date2 = "2020-10-11";
+                        day = "Veterans' Day";
+                        break;
+                    case "2019-10-28":
+                    case "2020-10-26":
+                        date = "2019-10-28";
+                        date2 = "2020-10-26";
+                        day = "Thanksgiving Day";
+                        break;
+                    case "2019-12-25":
+                    case "2020-12-25":
+                        date = "2019-12-25";
+                        date2 = "2020-12-25";
+                        day = "Christmas Day";
+
+                }
+
+
+                //Checking inputs
+                if (inputGame == "" && inputDate == "") {
+
+                    alert("Enter amount of Games and enter today's Date!");
+
+                } else if (inputGame == "" && inputDate != "") {
+
+                    alert("Enter amount of Games");
+
+                } else if (inputDate == "" && inputGame <= 4 || inputDate == "" && inputGame >= 21) {
+
+                    alert("Games are a Minimum of 5 and a Maximum of 20");
+                    alert("Enter today's Date!");
+
+                } else if (inputDate != "" && inputGame <= 4 || inputDate !== "" && inputGame >= 21) {
+
+                    alert("Games are a Minimum of 5 and a Maximum of 20");
+                    
+                }  else if (inputGame != "" && inputDate == "") {
+
+                    alert("Enter today's date");
+
+                } else
+
+
+                //checking without holidays (switch statement)
+                if (inputGame >= 5 && inputGame <= 10) {
+
+                    var mathForTotalAmmountAfterDiscount = (gamePrice * inputGame) * dis1;
+                    var totalAmmountAfterDiscount = (gamePrice * inputGame) - mathForTotalAmmountAfterDiscount;
+                    var newDis1 = dis1 * 100;
+                    document.getElementById("show").innerHTML = "Discount: " + newDis1 + "%"
+                            + "<br>"
+                            + "Total: $" + totalAmmountAfterDiscount.toFixed(2);
+
+
+                } else if (inputGame >= 11 && inputGame <= 15) {
+
+                    var mathForTotalAmmountAfterDiscount = (gamePrice * inputGame) * dis2;
+                    var totalAmmountAfterDiscount = (gamePrice * inputGame) - mathForTotalAmmountAfterDiscount;
+                    var newDis2 = dis2 * 100;
+                    document.getElementById("show").innerHTML = "Discount: " + newDis2 + "%"
+                            + "<br>"
+                            + " Total: $" + totalAmmountAfterDiscount.toFixed(2);
+
+                } else if (inputGame >= 16 && inputGame <= 20) {
+
+                    var mathForTotalAmmountAfterDiscount = (gamePrice * inputGame) * dis3;
+                    var totalAmmountAfterDiscount = (gamePrice * inputGame) - mathForTotalAmmountAfterDiscount;
+                    var newDis3 = dis3 * 100;
+                    document.getElementById("show").innerHTML = "Discount: " + newDis3 + "%"
+                            + "<br>"
+                            + " Total: $" + totalAmmountAfterDiscount.toFixed(2);
+                }
+
+
+                //checking with switch statement
+                if (inputGame >= 5 && inputGame <= 10 && inputDate == date || inputGame >= 5 && inputGame <= 10 && inputDate == date2) {
+
+                    var discountMatch1 = dis1 + disDate;
+                    var mathForTotalAmmountAfterDiscount = (gamePrice * inputGame) * discountMatch1;
+                    var totalAmmountAfterDiscount = (gamePrice * inputGame) - mathForTotalAmmountAfterDiscount;
+                    var newDiscountMatch1 = discountMatch1 * 100;
+                    alert("It's " + day + "\n" + "Since it's a holiday, a further discount of 3% is given.");
+                    document.getElementById("show").innerHTML = "Discount: " + newDiscountMatch1 + "%"
+                            + "<br>"
+                            + " Total: $" + totalAmmountAfterDiscount.toFixed(2);
+
+
+
+                } else if (inputGame >= 11 && inputGame <= 15 && inputDate == date || inputGame >= 11 && inputGame <= 15 && inputDate == date2) {
+
+                    var discountMatch2 = dis2 + disDate;
+                    var mathForTotalAmmountAfterDiscount = (gamePrice * inputGame) * discountMatch2;
+                    var totalAmmountAfterDiscount = (gamePrice * inputGame) - mathForTotalAmmountAfterDiscount;
+                    var newDiscountMatch2 = discountMatch2 * 100;
+
+                    alert("It's " + day + "\n" + "Since it's a holiday, a further discount of 3% is given.");
+                    document.getElementById("show").innerHTML = "Discount: " + newDiscountMatch2 + "%"
+                            + "<br>"
+                            + " Total: $" + totalAmmountAfterDiscount.toFixed(2);
+
+
+                } else if (inputGame >= 16 && inputGame <= 20 && inputDate == date || inputGame >= 16 && inputGame <= 20 && inputDate == date2) {
+
+                    var discountMatch3 = dis3 + disDate;
+                    var mathForTotalAmmountAfterDiscount = (gamePrice * inputGame) * discountMatch3;
+                    var totalAmmountAfterDiscount = (gamePrice * inputGame) - mathForTotalAmmountAfterDiscount;
+                    var newDiscountMatch3 = discountMatch3 * 100;
+                    
+
+                    alert("It's " + day + "\n" + "Since it's a holiday, a further discount of 3% is given.");
+                    document.getElementById("show").innerHTML = "Discount: " + newDiscountMatch3.toFixed(0) + "%"
+                            + "<br>"
+                            + " Total: $" + totalAmmountAfterDiscount.toFixed(2);
+
+                }
+
+
+
+
+
+
+
+            }//end of show
+
+        </script> 
+    </head>
+    <body>
+
+        <h2> Jonathan Diaz - Test 1 (Take Home Exam)</h2>       
+
+        Enter the number of games you want to play:  <input type="text" id="gameTxtBx" required autofocus
+                                                            placeholder="Number of games"
+                                                            />
+        <br><br>       
+
+        Today's Date: <input type="date" id="date" required autofocus
+                             pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}"
+                             />
+
+        <br><br> 
+
+
+        <button onclick="show()">Show Entries</button> 
+        <p></p>  
+        <div>Output:</div> 
+        <br>
+        <div id="show"></div>  
+
+
+
+
+    </body>
+</html>

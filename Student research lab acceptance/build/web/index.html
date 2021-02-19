@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--Hwk1: storing (name,id) into an array -->
+<html>
+    <head>
+        <script type="text/javascript">
+            
+            
+            function add()
+            {
+                
+                //boolean variables for validation
+                var nameOK = false;
+                var allOK = false;
+                 
+                
+                //reading the inputs
+            
+                var inputName = document.getElementById("fnameTxtBx").value.trim();
+                
+                //validation: name not empty and only characters
+              
+                
+                //creating a variable that replicates the regular expression below
+                var acceptRegex = /^[A-Za-z ][A-Za-z0-9!@#$%^&* ]*$/;
+                
+                if(acceptRegex.test(inputName)) nameOK = true;
+               
+                //logical and
+                allOK = (nameOK) ;
+                
+                if (allOK == true)
+                {
+                    //let's clear the input boxes
+                    
+                    document.getElementById("fnameTxtBx").value = "";
+                    
+                    //Get the text
+                    document.getElementById("show").innerHTML = "Name: " + inputName;
+                    
+        } else {
+            
+                    if (nameOK == false)alert("Error on Name");
+                      
+        }
+                
+        
+                
+                //buttons
+                 
+                 if(document.getElementById("freshman").checked ) {
+                       document.getElementById("showGrade").innerHTML = "Status: Freshman" ;
+                       
+                }else if(document.getElementById("sophomore").checked ) {
+                   document.getElementById("showGrade").innerHTML = "Status: Sophomore";
+                
+                }else if(document.getElementById("senior").checked ) {
+                    document.getElementById("showGrade").innerHTML = "Status: Senior";
+                }else{
+                    alert("Pick a Status");
+                }
+                
+                
+                //checkboxes
+                  
+                var items = document.getElementsByName("cb");
+                var selectedItems="";
+				for(var i=0; i<items.length; i++){
+					if(items[i].type==='checkbox' && items[i].checked===true)
+						selectedItems+=items[i].value + "\n";
+				
+                    }
+                 
+                 
+                    document.getElementById("showInterest").innerHTML = "Interest: " + selectedItems ;
+             
+         
+     
+
+            //end of add()
+            
+           
+            
+        }
+        //end of show()
+        </script>
+    </head>
+    <body>
+        <h2>Jonathan Diaz Homework 2: student research lab acceptance</h2>
+       
+        
+        Name: <input type="text" required
+                          id="fnameTxtBx"
+                          pattern="[a-zA-Z-']*"/>
+        <br/><br/>
+        
+        Status: <input type="radio" name ="button"
+                          id="freshman"
+                          /> Freshman
+                <input type="radio" name ="button"
+                          id="sophomore"
+                          /> Sophomore
+                <input type="radio" name ="button"
+                        id="senior"
+                          /> Senior
+        <br/><br/>
+        
+        Areas of Interest: check all that apply:
+        
+         <br/><br/>
+        
+        <input type="checkbox" name="cb"
+               value ="Robotics"
+               id="robotics"
+               /> Robotics
+         <input type="checkbox" name="cb"
+                value ="AI"
+               id="ai"
+               /> AI
+          <input type="checkbox" name="cb"
+                 value ="Semantic Web"
+               id="semanticweb"
+               /> Semantic Web
+           <input type="checkbox"  name="cb"
+                  value ="Big Data"
+               id="bigdata"
+               /> Big Data
+       
+        <br/><br/>
+       
+        <p></p>
+        <button onclick="add()" >Submit</button>
+       
+        <p></p>
+        <div id="q">Data Shown Here:</div>
+        <br/>
+        <div id="show"></div>
+        <div id="showGrade"></div>
+        <div id="showInterest"></div>
+        
+        
+    </body>
+</html>

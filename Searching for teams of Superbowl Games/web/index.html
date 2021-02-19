@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <!-- download jQuery from Google's CDN -->
+        <script 
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+        </script>
+        
+        <script type='text/javascript'>
+            function runjQuery()
+            {
+                //reading the team's name
+                var teamName = document.getElementById("nameTxtBx").value.trim();
+                
+                if (teamName != "")
+                {
+                    //start communication using jQuery
+                    $.ajax(
+                    {
+                        //parameters
+                        url: "search.jsp",
+                        data: "nameKey="+teamName,
+                        dataType: "text",
+                        success: function(serverdata)
+                        {
+                            $("#show").html(serverdata);
+                        }
+                                
+                    })
+                }
+                else
+                    alert("Please enter a name for the team");
+                
+            }
+        </script>
+        
+    </head>
+    <body>
+        <h2>Jonathan Diaz - Superbowl Games</h2>
+        Search a Team: <input type="text" id="nameTxtBx" required autofocus
+                              placeholder="Enter a team's name"
+                              onchange="runjQuery()"/>
+        <p></p>
+        <p id="show"></p>
+    </body>
+</html>

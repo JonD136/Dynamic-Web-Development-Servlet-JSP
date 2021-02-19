@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--Hwk1: storing (name,id) into an array -->
+<html>
+    <head>
+        <script type="text/javascript">
+            //creating an array (actually an arraylist
+            //since size is unknown)
+            var users = [];
+            
+            function add()
+            {
+                
+                //boolean variables for validation
+                var nameOK = false;
+                var idOK = false;
+                var allOK = false;
+                
+                //reading the inputs
+                var inputLName = document.getElementById("lnameTxtBx").value.trim();
+                var inputFName = document.getElementById("fnameTxtBx").value.trim();
+                var inputID = document.getElementById("idTxtBx").value.trim();
+                
+                //validation: names(last & first) not empty and only characters
+                //and ID 6-digit
+                
+                //creating a variable that replicates the regular expression below
+                var acceptRegex = /^[a-zA-Z-']+$/;
+                
+                if(acceptRegex.test(inputLName) && acceptRegex.test(inputFName)) nameOK = true;
+                if(inputID != "" && inputID.length == 6 && !isNaN(inputID)) idOK = true;
+                
+                //logical and
+                allOK = (nameOK) && (idOK);
+                
+                if (allOK == true)
+                {
+                    //let's clear the input boxes
+                    document.getElementById("lnameTxtBx").value = "";
+                    document.getElementById("fnameTxtBx").value = "";
+                    document.getElementById("idTxtBx").value = "";
+                    
+                    //let's populate the array
+                    users.push(inputLName+","+inputFName+" "+ inputID);
+                    
+                    console.log("user added");
+                    
+                }
+                else
+                {
+                    if (nameOK == false)alert("Invalid Name");
+                    if (idOK == false)alert("Invalid ID");    
+                    
+                }
+            }//end of add()
+            
+            function show()
+            {  
+                document.getElementById("show").innerHTML = "";
+                
+                for(var i=0;i<users.length;i++)
+                {
+                    document.getElementById("show").innerHTML += users[i] + "<br/>";
+                }
+                
+                //showing it in the div
+                
+            }//end of show()
+        </script>
+    </head>
+    <body>
+        <h2>Hwk1: storing (name,id) into an array</h2>
+        Last Name: <input type="text" required
+                          id="lnameTxtBx"
+                          pattern="[a-zA-Z-']*"
+                          autofocus/>
+        &nbsp;&nbsp;
+        First Name: <input type="text" required
+                          id="fnameTxtBx"
+                          pattern="[a-zA-Z-']*"/>
+        <br/><br/>
+        ID(6-digit): <input type="number" required
+                            id ="idTxtBx"
+                            min="100000" max="999999"/>
+        <p></p>
+        <button onclick="add()">Add User</button>
+        &nbsp;&nbsp;
+        <button onclick="show()">Show Users</button>
+        <p></p>
+        <div id="show">users shown here</div>
+    </body>
+</html>

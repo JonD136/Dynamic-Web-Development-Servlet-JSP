@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- Hwk6: US Presidents -->
+<html>
+    <head>
+        <!-- downloading jQuery from Google's CDN -->
+        <script 
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+        </script>
+
+        <script type="text/javascript">
+            function runjQuery1()
+            {
+                //go to server, read csv, populate <select>
+                $.ajax(
+                        {
+                            url: "populateselect.jsp",
+                            dataType: "text",
+                            success: function (serverdata)
+                            {
+                                $("#showpresidents").html(serverdata);
+                            }
+                        })
+            }//end of runjQuery1()
+
+            function runjQuery2()
+            {
+                //reading the selected president
+                var selectedPres = document.getElementById("presidentList").value;
+
+                //ensuring the value of the selection is not blank
+                if (selectedPres != "")
+                {
+                    $.ajax(
+                            {
+                                url: "showpresident.jsp",
+                                data: "nameKey=" + selectedPres,
+                                dataType: "text",
+                                success: function (serverdata)
+                                {
+                                    $("#showpres").html(serverdata);
+                                }
+                            })
+                }
+                else
+                {
+                    alert("Please select a President");
+                    return false;
+                }
+            }
+        </script>
+    </head>
+    <body onload="runjQuery1()">
+        <h2>Hwk6: US Presidents</h2>
+        US President: <span id="showpresidents"></span><p></p>
+        <p id="showpres"></p>
+    </body>
+</html>

@@ -1,0 +1,75 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ResearchLab.aspx.cs" Inherits="ResearchLabApplication.ResearchLab" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head runat="server">
+        <title></title>
+        <style type="text/css">
+            .auto-style1 {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <form id="form1" runat="server">
+            <table>
+                <tr>
+                    <td>Name :</td>
+                    <td>
+                        <%-- textbox for Name --%>
+                        <asp:TextBox ID="txtName" runat="server"></asp:TextBox> <br />
+                    </td>
+                    <td>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName" ErrorMessage="Name Can not be Blank" ForeColor="Red"></asp:RequiredFieldValidator>
+                        &nbsp;<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtName" ErrorMessage="Name can contains only alphabets" ForeColor="Red" ValidationExpression="^[a-zA-Z]+$"></asp:RegularExpressionValidator>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Status : </td>
+                    <td>
+                        <%-- radio button list --%>
+                        <asp:RadioButtonList ID="rbtStatus" runat="server" RepeatDirection="Horizontal">
+                            <asp:ListItem>Freshman</asp:ListItem>
+                            <asp:ListItem>Sophomore</asp:ListItem>
+                            <asp:ListItem>Senior</asp:ListItem>
+                        </asp:RadioButtonList>
+                    </td>
+                    <td>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="rbtStatus" ErrorMessage="Select Status" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Area of Interest : Check All that apply</td>
+                    <td>
+                        <%-- checkbox list --%>
+                        <asp:CheckBoxList ID="chklAreaofInterest" runat="server" RepeatDirection="Horizontal" Width="331px">
+                            <asp:ListItem>Robotics</asp:ListItem>
+                            <asp:ListItem>AI</asp:ListItem>
+                            <asp:ListItem>Semantic Web</asp:ListItem>
+                            <asp:ListItem>Big Data</asp:ListItem>
+                        </asp:CheckBoxList>
+                    </td>
+                    <td>
+                        &nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style1" colspan="2">
+                        <%-- button to submit form --%>
+                        <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" />
+                    </td>
+                    <td class="auto-style1">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style1" colspan="2">&nbsp;</td>
+                    <td class="auto-style1">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style1" colspan="2">
+                        <%-- label for displaying inputs --%>
+                        <asp:Label ID="lblMessage" runat="server"></asp:Label>
+                    </td>
+                    <td class="auto-style1">&nbsp;</td>
+                </tr>
+            </table>   
+        </form>
+    </body>
+</html>
