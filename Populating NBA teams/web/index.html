@@ -1,0 +1,36 @@
+<!DOCTYPE html> 
+<!-- Term Project  --> 
+<html>    
+    <head>   
+        <!-- downloading jQuery from Google's CDN -->    
+        <script 
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+        </script>            
+        <script type="text/javascript">
+
+            function runjQuery1() {
+                //go to server, read csv, populate <select>          
+                $.ajax(
+                        {url: "populateURL.jsp",
+                            dataType: "text",
+                            success: function (serverdata)
+                            {
+                                $("#shownba").html(serverdata);
+                            }
+                        })
+            }//end of runjQuery1()      
+
+
+
+        </script>      
+    </head>  
+    <body onload="runjQuery1()">  
+        
+        <h2>Jonathan Diaz - Term Project  </h2>     
+
+        NBA: <span id="shownba"> </span>
+
+
+
+    </body>
+</html>

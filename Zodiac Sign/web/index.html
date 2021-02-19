@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>    
+    <head>        
+        <!-- downloading jQuery from Google's CDN -->     
+        <script            
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+        </script>              
+        <script type="text/javascript">
+
+function name() {
+    
+    var inputName= document.getElementById("nameTxtBx").value;
+  alert("hi");
+    
+    document.getElementById("showName").innerHTML = inputName;
+
+}
+            var agent;
+
+            if (window.XMLHttpRequest)
+                agent = new XMLHttpRequest();
+            else
+                agent = new ActiveXObject("Microsoft.XMLHTTP");
+
+            function runselect() {
+
+                agent.open("GET", "zodiac.jsp", true);
+                agent.send(null);
+
+                agent.onreadystatechange = function () {
+
+                    if (agent.readyState == 4 && agent.status == 200) {
+
+                        document.getElementById("showselect").innerHTML = agent.responseText;
+
+                    }
+
+                }
+            }
+
+    function year(){
+                var year = (agent.responseText - 4)% 12;
+                if (year == 0 ){
+                    var yearN = "Zodic: Rat";
+                
+                    document.getElementById("showYear").innerHTML = yearN;
+                    
+                }else if (year == 1 ){
+                    var yearN = "Zodic: Ox";
+                
+                    document.getElementById("showYear").innerHTML = yearN;
+                    
+                }else if (year == 2 ){
+                    var yearN = "Zodic: Tiger";
+                
+                    document.getElementById("showYear").innerHTML = yearN;
+                    
+                }else if (year == 3 ){
+                    var yearN = "Zodic: Rabbit";
+                
+                    document.getElementById("showYear").innerHTML = yearN;
+                    
+                }else if (year == 4 ){
+                    var yearN = "Zodic: Dragon";
+                
+                    document.getElementById("showYear").innerHTML = yearN;
+                    
+                }else if (year == 5 ){
+                    var yearN = "Zodic: Snake";
+                
+                    document.getElementById("showYear").innerHTML = yearN;
+                    
+                }else if (year == 6 ){
+                    var yearN = "Zodic: Horse";
+                
+                    document.getElementById("showYear").innerHTML = yearN;
+                    
+                }else if (year == 7 ){
+                    var yearN = "Zodic: Goat";
+                
+                    document.getElementById("showYear").innerHTML = yearN;
+                    
+                }else if (year == 8 ){
+                    var yearN = "Zodic: Monkey";
+                
+                    document.getElementById("showYear").innerHTML = yearN;
+                    
+                }else if (year == 9 ){
+                    var yearN = "Zodic: Rooster";
+                
+                    document.getElementById("showYear").innerHTML = yearN;
+                    
+                }else if (year == 10 ){
+                    var yearN = "Zodic: Dog";
+                
+                    document.getElementById("showYear").innerHTML = yearN;
+                    
+                }else if (year == 11 ){
+                    var yearN = "Zodic: Pig";
+                
+                    document.getElementById("showYear").innerHTML = yearN;
+                    
+                }
+                
+}
+                
+        </script>  
+    </head>    
+    
+    <body onload = "runselect()">
+        
+        <h2>Jonathan Diaz - Midterm</h2>   
+        
+         Enter Name: <input type="text" id="nameTxtBx" 
+                              placeholder="Enter a name"
+                              />
+         <p></p>
+         Year of birth: 
+         
+          
+         <p id="showselect"></p>       
+        <p></p>   
+        
+        <button onclick="name()">Show Name</button> 
+          <div id="showName"></div>
+          <div id="showyear"></div>
+          
+          
+        
+        
+        
+        
+    </body>
+</html>

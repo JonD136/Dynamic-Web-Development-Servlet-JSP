@@ -1,0 +1,51 @@
+<html>    
+    <head>       
+        <!-- downloading jQuery from Google's CDN -->       
+        <script            
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+        </script>        
+        <script type="text/javascript">
+            function runjQuery(step) {
+                if (step == 0) {
+
+                    //let's access the server program using jQuery ajax for communication        
+                    $.ajax({
+                        //setting the parameters        
+                        url: "process.jsp",
+                        data: "processKey=populateselect",
+                        dataType: "text",
+                        success: function (serverdata) {
+                            $("#showselect").html(serverdata);
+                        }
+                    }
+                    );
+                } else
+                if (step == 1) {
+
+                    //reading the selected capital            
+                    var mcapital = document.getElementById("capitalcountryList").value;
+
+                    //let's access the a program in the server that accesses the database            
+                    //using jQuery ajax for communication          
+                    $.ajax({
+
+                        //setting the parameters                  
+                        url: "process.jsp",
+                        data: "processKey=showresults" + "&capitalKey=" + mcapital,
+                        dataType: "text",
+                        success: function (serverdata) {
+                            $("#showresults").html(serverdata);
+                        }
+                    });
+                }
+            }//end of runjQuery()   
+
+        </script>          
+    </head>   
+    <body onload="runjQuery(0)">      
+        <h2>Jonathan Diaz - Distance NY World Capital</h2>  
+        Capital: <span id="showselect"></span>    
+        <p></p>      
+        <p id="showresults"></p>    
+    </body> 
+</html>

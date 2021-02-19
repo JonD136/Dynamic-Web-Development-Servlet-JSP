@@ -1,0 +1,56 @@
+<html>    
+    <head>       
+        <!-- loading jQuery from Google's CDN -->       
+        <script           
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/ jquery.min.js">
+        </script>               
+        <script type='text/javascript'>
+            function processrequest(step) {
+                if (step == 1) {
+                    //reading user input               
+                    var inputChar = document.getElementById("searchTxtBx").value.trim();
+                    if (inputChar == "") //clearing the output placeholder                    
+                    {
+
+                        document.getElementById("showselect").innerHTML = "";
+                    } else {
+                        //starting jQuery ajax                
+                        $.ajax({
+                            //setting up the parameters for communication with server   
+                            url: "processrequest.jsp",
+                            data: "stepKey=populate" + "&characterKey=" + inputChar,
+                            dataType: "text",
+                            success: function (serverdata) {
+                                $("#showselect").html(serverdata);
+                            }
+                        
+                        })
+                    }
+                } else
+                if (step == 2) {
+                    //reading the selected book from the select element
+
+                    var selectedBook = document.getElementById("bookList").value;
+                    //back again to the server passing this value                
+                    $.ajax({
+                        //setting up the parameters for communication with server      
+                        url: "processrequest.jsp",
+                        data: "stepKey=showbook" + "&bookKey=" + selectedBook,
+                        dataType: "text",
+                        success: function (serverdata) {
+                            $("#showselect").html(serverdata);
+                        }
+                    })
+                }
+            }//end of getbooks()      
+        </script>           
+    </head>   
+    <body>    
+        <h2>Live Book Search</h2>      
+        <input type="text" id="searchTxtBx" onkeyup="processrequest(1)"/>    
+        <p></p>       
+        <p id="showselect"></p>     
+        <p></p>      
+        <div id="showresults"></div>   
+    </body> 
+</html> 

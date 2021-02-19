@@ -1,0 +1,73 @@
+<!DOCTYPE html> <html>    
+    <head>        
+        <script type="text/javascript">
+            var chances = 0;
+            function checkegg(color) {
+                chances++;
+                if (chances > 2) {
+                    alert("Sorry, you exhausted number of attempts");
+                    return false;
+                } else {
+                    if (color == 'blue')
+                        window.location = "congrats.html";
+                    else {
+                        if (chances == 2) {
+                            alert("Wrong color, time is up, restarting game");
+                            chances = 0;
+                            return false
+                        } else {
+                            alert("wrong color, have one more attempt");
+                            return false;
+                        }
+                    }
+                }
+            }
+                    </script>   
+    </head>    
+    <body>    
+        <table border="1">        
+            <tr>               
+                <th colspan="3"> 
+                    <img src="pics/amazon_reward.jpg"/> 
+                </th>            
+            </tr>     
+            
+            <tr>              
+                <td> 
+                    <img src="pics/blue_easter_egg.jpg"/>
+                </td>    
+                
+                <td> 
+                    <img src="pics/red_easter_egg.jpg"/> 
+                </td>   
+                
+                <td>
+                    <img src="pics/green_easter_egg.jpg"/>
+                </td>      
+                
+            </tr>           
+            
+            <tr>               
+                <td>
+                    <button id="color_egg" onclick="checkegg('blue')">
+                        Crack
+                    </button>
+                </td>    
+                
+                <td>
+                    <button id="color_egg" onclick="checkegg('red')">
+                        Crack
+                    </button>
+                </td>                
+                
+                <td>
+                    <button id="color_egg" onclick="checkegg('green')">
+                        Crack
+                    </button>
+                </td>        
+                
+            </tr>        
+        
+        </table>    
+    </body>
+</html>

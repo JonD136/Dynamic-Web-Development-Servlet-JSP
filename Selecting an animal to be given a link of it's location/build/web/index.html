@@ -1,0 +1,57 @@
+<!DOCTYPE html> 
+<!-- FinalA  --> 
+<html>    
+    <head>   
+        <!-- downloading jQuery from Google's CDN -->    
+        <script 
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+        </script>            
+        <script type="text/javascript">
+            function runjQuery1() {
+                //go to server, read csv, populate <select>          
+                $.ajax(
+                        {url: "populateselect.jsp",
+                            dataType: "text",
+                            success: function (serverdata)
+                            {
+                                $("#showAnimals").html(serverdata);
+                            }
+                        })
+            }//end of runjQuery1()      
+
+            function runjQuery2() {
+                //reading the selected animal    
+                var selectedAnimal= document.getElementById("animalList").value;
+                //ensuring the value of the selection is not blank            
+                if (selectedAnimal != "") {
+                    $.ajax({
+                        url: "showLocation.jsp",
+                        data: "nameKey=" + selectedAnimal,
+                        dataType: "text",
+                        success: function (serverdata) {
+                            $("#showLocation").html(serverdata);
+                        }
+                    })
+                } else {
+                    alert("Please select an Animal");
+                    return false;
+                }
+                
+                
+            }
+           
+            
+
+        </script>      
+    </head>  
+    <body onload="runjQuery1()">     
+        
+        <h2>Jonathan Diaz - FinalA  </h2>     
+
+        Bronx Zoo: <span id="showAnimals"> </span>
+           
+         
+        <p id="showLocation"></p>
+        
+    </body>
+</html>
