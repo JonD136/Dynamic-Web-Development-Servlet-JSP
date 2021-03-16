@@ -10,7 +10,7 @@
 //Since in the assignment as a hint we can use an id
 // to each team as the primary key of the database.
 //I sorted the id out in order (1-29) by the year(old-new) of each team
-        String t = "<= 5 order by id";
+        String t = ">= 0 order by year ASC limit 5";
 
         //connecting to the database        
         String database = "jdbc:mysql://localhost:3306/nba";
