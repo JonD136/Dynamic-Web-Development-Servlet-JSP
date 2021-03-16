@@ -8,7 +8,7 @@
         //accessing database distancenycapital, setting the parameters for the Connection object    
         String database = "jdbc:mysql://localhost:1527/distancenytocapital";
         String user = "root";
-        String pwd = "root";
+        String pwd = "";
 
         //loading the jdbc Driver     
         Class.forName("com.mysql.jdbc.Driver");
@@ -48,8 +48,8 @@
             ResultSet results2 = mystat.executeQuery(SQLselect);
 
             while (results2.next()) {
-                int dKm = results2.getInt("dkm");
-                int dMiles = results2.getInt("dmiles");
+                int dKm = results2.getInt("kilometers");
+                int dMiles = results2.getInt("miles");
                 out.println("The distance between NY and "
                         + selectedCapital + " is "
                         + dMiles + " miles or "
