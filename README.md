@@ -4,6 +4,8 @@ Tasks were to utilize <b>CSV</b> files and/or use the <b>database</b> to output 
 
 There's a folder called "<b>CVS files</b>" They help with some of these projects.
 
+<------------------------------------------------------------------------------------------------------------>
+
 <b> DATABASE INFO: </b>
 
 I used XAMPP which allows me to start running Apache & MySQL.
