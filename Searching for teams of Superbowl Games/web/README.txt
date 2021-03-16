@@ -1,0 +1,1 @@
+Change the path of the string CVS file in search.jsp so that it can work.
