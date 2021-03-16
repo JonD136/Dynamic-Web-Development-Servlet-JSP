@@ -10,7 +10,7 @@ They help with some of these projects.
 
 <b> DATABASE INFO: </b>
 
-I used XAMPP which allows me to start running Apache & MySQL.
+I used XAMPP that when installed, it allows me to start running Apache & MySQL.
 
 Once both are running, on MySQL I click on "Admin" which will bring me to "localhost/phpmyadmin/"
 
