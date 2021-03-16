@@ -1,0 +1,1 @@
+Don't have the CSV file for the zodiac signs & its this project isn't fullied yet
