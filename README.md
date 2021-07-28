@@ -12,8 +12,17 @@ They help with some of these projects.
 
 <b> DATABASE INFO: </b>
 
+https://xampp.en.softonic.com/mac/download
+
 I used XAMPP that when installed, it allows me to start running Apache & MySQL.
 
 Once both are running, on MySQL I click on "Admin" which will bring me to "localhost/phpmyadmin/"
 
 Here i can create tables to work out my projects.
+
+<b><u> For MAC:</u></b>
+
+1. Click on "Manage Servers" tab
+2. Have "Apache Web Server" and "MySQL Database" Running
+3. Click to "Welcome" tab
+4. Go to "localhost/phpmyadmin/"
