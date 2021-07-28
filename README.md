@@ -20,7 +20,7 @@ Once both are running, on MySQL I click on "Admin" which will bring me to "local
 
 Here i can create tables to work out my projects.
 
-<b><u> For MAC:</u></b>
+<b><u>For MAC:</b>
 
 1. Click on "Manage Servers" tab
 2. Have "Apache Web Server" and "MySQL Database" Running
